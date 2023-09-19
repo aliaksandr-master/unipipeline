@@ -102,7 +102,7 @@ class UniAmqpPyBroker(UniBroker[UniAmqpPyBrokerConfig]):
     def topic_exists(self, topic: str) -> bool:
         with self._everytime_new_channel(close=True) as channel:
             try:
-                channel.queue_declare(queue=topic, passive=True)
+                channel.queue_declare(queue=topic, passive=True)  # type: ignore
             except NotFound:
                 return False
         return True
